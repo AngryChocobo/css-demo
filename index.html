@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3d-transform</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        background-color: #ddd;
+        transform-style: preserve-3d;
+      }
+
+      span {
+        transition: 1s;
+        color: transparent;
+        margin-bottom: 20px;
+      }
+      .card {
+        position: absolute;
+        width: 200px;
+        height: 350px;
+        left: 50%;
+        top: 80px;
+        margin: auto;
+        text-align: center;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        transform: translateX(-50%);
+        transition: 1s;
+      }
+      .popout {
+        background: url(./popout.png) no-repeat 50%;
+        background-size: contain;
+        z-index: 4;
+      }
+      .mask {
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 3;
+      }
+      .navigation {
+        background: url(./navigation.png) no-repeat 50%;
+        background-size: contain;
+        z-index: 2;
+      }
+      .content {
+        background: url(./content.png) no-repeat 50%;
+        background-size: contain;
+        z-index: 1;
+      }
+      main:hover span {
+        color: #fff;
+      }
+      main:hover .popout {
+        transform: translateX(-75px) rotateX(45deg) rotateZ(10deg) skew(-15deg)
+          translateZ(100px);
+        background: transparent;
+      }
+      main:hover .mask {
+        transform: translateX(-75px) rotateX(45deg) rotateZ(10deg) skew(-15deg)
+          translateZ(20px);
+      }
+      main:hover .navigation {
+        background: rgba(40, 187, 102, 0.5);
+        transform: translateX(-75px) rotateX(45deg) rotateZ(10deg) skew(-15deg)
+          translateZ(-60px);
+      }
+      main:hover .content {
+        background: #fff;
+        transform: translateX(-75px) rotateX(45deg) rotateZ(10deg) skew(-15deg)
+          translateZ(-140px);
+      }
+      main:hover .content span {
+        color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="card popout"><span>Popout</span></div>
+      <div class="card mask"><span>Mask</span></div>
+      <div class="card navigation"><span>Navigation</span></div>
+      <div class="card content"><span>Content</span></div>
+    </main>
+  </body>
+</html>
