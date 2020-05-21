@@ -1,0 +1,11 @@
+body {
+  background: red;
+}
+
+.for-loop(@index) when (@index > 0) {
+  #img@{index} {
+    background-image: url("http://mysite.com/image@{index}.png");
+  }
+  .for-loop(@index - 1); /* the next iteration's call - final-expression*/
+}
+.for-loop(3);

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LoveLive!</title>
+    <link rel="stylesheet" href="lovelive.less" />
+    <style>
+      @font-face {
+        font-family: "lovelive";
+        src: url(./LISTFCEB_.TTF);
+      }
+      body {
+        background-color: #000;
+        margin: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      main {
+        text-align: center;
+      }
+      .title-en {
+        font-family: "lovelive";
+        color: white;
+      }
+      .title-jp {
+        font-size: 40px;
+        color: white;
+      }
+      .word {
+        display: inline-block;
+        font-size: 60px;
+        line-height: 40px;
+        transform: scaleY(0);
+        text-shadow: 0px 0px 20px;
+      }
+      .word-space {
+        margin: 0 10px;
+      }
+      .word-0 {
+        animation-name: firstLVisible;
+        animation-duration: 1.2s;
+        transform: scaleY(1);
+      }
+      .word-5 {
+        animation-name: secondLMove;
+        animation-duration: 1.2s;
+        transform: scaleY(1);
+      }
+
+      /* .title-jp {
+        animation-name: rotate2;
+        animation-duration: 5s;
+        transform-origin: bottom;
+      } */
+      @keyframes firstLVisible {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes secondLMove {
+        0% {
+          opacity: 0;
+          transform: translateX(-1em);
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes growUp {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          transform: scaleY(1);
+          opacity: 1;
+        }
+      }
+
+      /* @keyframes rotate2 {
+        0% {
+          transform: rotateX(0);
+        }
+
+        25% {
+          transform: rotateX(90deg);
+        }
+
+        50% {
+          transform: rotateX(180deg);
+        }
+
+        75% {
+          transform: rotateX(270deg);
+        }
+
+        100% {
+          transform: rotateX(360deg);
+        }
+      } */
+
+      .word-1 {
+        animation-name: growUp;
+        animation-duration: 0.2s;
+        transform-origin: bottom;
+        animation-fill-mode: forwards;
+        animation-delay: 0.8s;
+      }
+
+      .word-2 {
+        animation-name: growUp;
+        animation-duration: 0.2s;
+        transform-origin: bottom;
+        animation-fill-mode: forwards;
+        animation-delay: 0.9s;
+      }
+
+      .word-3 {
+        animation-name: growUp;
+        animation-duration: 0.2s;
+        transform-origin: bottom;
+        animation-fill-mode: forwards;
+        animation-delay: 1s;
+      }
+
+      .word-6 {
+        animation-name: growUp;
+        animation-duration: 0.2s;
+        transform-origin: bottom;
+        animation-fill-mode: forwards;
+        animation-delay: 1.1s;
+      }
+
+      .word-7 {
+        animation-name: growUp;
+        animation-duration: 0.2s;
+        transform-origin: bottom;
+        animation-fill-mode: forwards;
+        animation-delay: 1.2s;
+      }
+      .word-8 {
+        animation-name: growUp;
+        animation-duration: 0.2s;
+        transform-origin: bottom;
+        animation-fill-mode: forwards;
+        animation-delay: 1.3s;
+      }
+      .word-9 {
+        animation-name: growUp;
+        animation-duration: 0.2s;
+        transform-origin: bottom;
+        animation-fill-mode: forwards;
+        animation-delay: 1.4s;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="title-en">Love Live!</p>
+      <p class="title-jp">ラブライブ！</p>
+    </main>
+    <script>
+      var ll = "Love Live!";
+      var wordList = {};
+      var titleEnHtml = ll.split("").reduce((pre, current, index) => {
+        const className = `word-${index}`;
+        pre += `<div class="word ${className} ${
+          index === 4 && "word-space"
+        }">${current}</div>`;
+        wordList[className] = className;
+        return pre;
+      }, "");
+      document.querySelector(".title-en").innerHTML = titleEnHtml;
+      console.log(wordList);
+      const secondL = document.querySelector(".word-5");
+      secondL.addEventListener("transitionend", function (obj) {
+        console.log(obj);
+        if (obj.propertyName === "transform") {
+          console.log();
+          Object.keys(wordList)
+            .filter((word, index) => index !== 0 && index !== 4 && index !== 5)
+            .forEach((word) => {
+              const wordDom = document.querySelector(`.${word}`);
+              console.log(wordDom);
+              //   wordDom.classList.add("a");
+              //   wordDom.style =
+              // "color: red; opacity: 1; transtion transform: scaleY(1); transform-origin: bottom";
+            });
+        }
+      });
+    </script>
+  </body>
+</html>
